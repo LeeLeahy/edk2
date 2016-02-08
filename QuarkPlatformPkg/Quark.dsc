@@ -46,6 +46,16 @@
   DEFINE GALILEO              = GEN2
 
   #
+  # Specify the maximum baud rate for the board
+  #
+!if $(GALILEO) == GEN1
+  DEFINE BAUD_RATE = 460800
+!endif
+!if $(GALILEO) == GEN2
+  DEFINE BAUD_RATE = 921600
+!endif
+
+  #
   # TPM 1.2 Hardware.  Options are [NONE, LPC, ATMEL_I2C, INFINEON_I2C]
   #
   DEFINE TPM_12_HARDWARE      = NONE
@@ -342,12 +352,7 @@
 !endif
   gEfiMdePkgTokenSpaceGuid.PcdPostCodePropertyMask|0x18
   gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress|0xE0000000
-!if $(GALILEO) == GEN1
-  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate|460800
-!endif
-!if $(GALILEO) == GEN2
-  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate|921600
-!endif
+  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate|$(BAUD_RATE)
   gEfiMdePkgTokenSpaceGuid.PcdUartDefaultDataBits|8
   gEfiMdePkgTokenSpaceGuid.PcdUartDefaultParity|1
   gEfiMdePkgTokenSpaceGuid.PcdUartDefaultStopBits|1
@@ -382,14 +387,8 @@
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseMmio|TRUE
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterBase|0x9000B000
-!if $(GALILEO) == GEN1
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialBaudRate|460800
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialBaudRate|$(BAUD_RATE)
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseHardwareFlowControl|FALSE
-!endif
-!if $(GALILEO) == GEN2
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialBaudRate|921600
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseHardwareFlowControl|FALSE
-!endif
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialLineControl|0x03
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialFifoControl|0x07
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialDetectCable|FALSE
