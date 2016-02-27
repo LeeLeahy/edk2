@@ -233,7 +233,9 @@ BdsWait (
 
   TimeoutRemain = PcdGet16 (PcdPlatformBootTimeOut);
   while (TimeoutRemain != 0) {
-    DEBUG ((EFI_D_INFO, "[Bds]BdsWait(%d)..Zzzz...\n", (UINTN) TimeoutRemain));
+    if (TimeoutRemain != 0xffff) {
+      DEBUG ((EFI_D_INFO, "[Bds]BdsWait(%d)..Zzzz...\n", (UINTN) TimeoutRemain));
+    }
     PlatformBootManagerWaitCallback (TimeoutRemain);
 
     BdsReadKeys (); // BUGBUG: Only reading can signal HotkeyTriggered
