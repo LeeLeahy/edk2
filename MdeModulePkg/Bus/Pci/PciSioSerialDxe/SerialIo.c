@@ -574,7 +574,7 @@ SerialReset (
   //
   // Go set the current control bits
   //
-  Control = 0;
+  Control = EFI_SERIAL_REQUEST_TO_SEND | EFI_SERIAL_DATA_TERMINAL_READY;
   if (SerialDevice->HardwareFlowControl) {
     Control |= EFI_SERIAL_HARDWARE_FLOW_CONTROL_ENABLE;
   }
