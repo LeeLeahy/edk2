@@ -206,13 +206,6 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdConOutUgaSupport|FALSE
 
 [PcdsFixedAtBuild]
-  gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x7
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x8000004F
-!if $(SOURCE_DEBUG_ENABLE)
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x17
-!else
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x2F
-!endif
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x10000
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxHardwareErrorVariableSize|0x8000
   gEfiMdeModulePkgTokenSpaceGuid.PcdVariableStoreSize|0x10000
@@ -225,6 +218,15 @@
 !endif
 
 [PcdsPatchableInModule.common]
+  gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x7
+
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x8000004F
+!if $(SOURCE_DEBUG_ENABLE)
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x17
+!else
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x2F
+!endif
+
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseMmio|FALSE
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterBase|0x03F8
 
