@@ -541,7 +541,10 @@ CbParseFadtInfo (
 
   @param  pRegBase           Pointer to the base address of serial port registers
   @param  pRegAccessType     Pointer to the access type of serial port registers
+  @param  pRegWidth          Pointer to the register width in bytes
   @param  pBaudrate          Pointer to the serial port baudrate
+  @param  pInputHertz        Pointer to the input clock frequency
+  @param  pId                Pointer to the serial port ID
 
   @retval RETURN_SUCCESS     Successfully find the serial port information.
   @retval RETURN_NOT_FOUND   Failed to find the serial port information .
@@ -551,7 +554,10 @@ RETURN_STATUS
 CbParseSerialInfo (
   OUT UINT32      *pRegBase,
   OUT UINT32      *pRegAccessType,
-  OUT UINT32      *pBaudrate
+  OUT UINT32      *pRegWidth,
+  OUT UINT32      *pBaudrate,
+  OUT UINT32      *pInputHertz,
+  OUT UINT32      *pId
   )
 {
   struct cb_serial    *CbSerial;
@@ -569,12 +575,24 @@ CbParseSerialInfo (
     *pRegBase = CbSerial->baseaddr;
   }
 
+  if (pRegWidth != NULL) {
+    *pRegWidth = CbSerial->regwidth;
+  }
+
   if (pRegAccessType != NULL) {
     *pRegAccessType = CbSerial->type;
   }
 
   if (pBaudrate != NULL) {
     *pBaudrate = CbSerial->baud;
+  }
+
+  if (pInputHertz != NULL) {
+    *pInputHertz = CbSerial->input_hertz;
+  }
+
+  if (pId != NULL) {
+    *pId = CbSerial->id;
   }
 
   return RETURN_SUCCESS;

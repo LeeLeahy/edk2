@@ -113,7 +113,10 @@ CbParseFadtInfo (
 
   @param  pRegBase           Pointer to the base address of serial port registers
   @param  pRegAccessType     Pointer to the access type of serial port registers
+  @param  pRegWidth          Pointer to the register width in bytes
   @param  pBaudrate          Pointer to the serial port baudrate
+  @param  pInputHertz        Pointer to the input clock frequency
+  @param  pId                Pointer to the serial port ID
 
   @retval RETURN_SUCCESS     Successfully find the serial port information.
   @retval RETURN_NOT_FOUND   Failed to find the serial port information .
@@ -121,9 +124,12 @@ CbParseFadtInfo (
 **/
 RETURN_STATUS
 CbParseSerialInfo (
-  IN UINT32*     pRegBase,
-  IN UINT32*     pRegAccessType,
-  IN UINT32*     pBaudrate
+  OUT UINT32     *pRegBase,
+  OUT UINT32     *pRegAccessType,
+  OUT UINT32     *pRegWidth,
+  OUT UINT32     *pBaudrate,
+  OUT UINT32     *pInputHertz,
+  OUT UINT32     *pId
   );
 
 /**

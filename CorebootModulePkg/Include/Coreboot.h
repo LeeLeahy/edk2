@@ -165,6 +165,9 @@ struct cb_serial {
   UINT32 type;
   UINT32 baseaddr;
   UINT32 baud;
+  UINT32 regwidth;
+  UINT32 input_hertz;
+  UINT32 id;
 };
 
 #define CB_TAG_CONSOLE       0x00010
