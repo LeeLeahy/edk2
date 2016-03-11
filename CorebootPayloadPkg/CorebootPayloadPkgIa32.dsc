@@ -34,6 +34,11 @@
   DEFINE SOURCE_DEBUG_ENABLE     = FALSE
 
   #
+  # BDS Options: [CorebootPayloadPkg, QuarkPlatformPkg]
+  #
+  DEFINE BDS_TYPE                = CorebootPayloadPkg
+
+  #
   # CPU options
   #
   DEFINE MAX_LOGICAL_PROCESSORS  = 64
@@ -162,7 +167,13 @@
   ResetSystemLib|CorebootPayloadPkg/Library/ResetSystemLib/ResetSystemLib.inf
   SerialPortLib|MdeModulePkg/Library/BaseSerialPortLib16550/BaseSerialPortLib16550.inf
   PlatformHookLib|CorebootPayloadPkg/Library/PlatformHookLib/PlatformHookLib.inf
+!if $(BDS_TYPE) == CorebootPayloadPkg
   PlatformBdsLib|CorebootPayloadPkg/Library/PlatformBdsLib/PlatformBdsLib.inf
+!else
+  PlatformBootManagerLib|CorebootPayloadPkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
+  SortLib|MdeModulePkg/Library/UefiSortLib/UefiSortLib.inf
+  UefiBootManagerLib|MdeModulePkg/Library/UefiBootManagerLib/UefiBootManagerLib.inf
+!endif
 
   #
   # Misc
@@ -343,7 +354,11 @@
   #
   MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
   UefiCpuPkg/CpuDxe/CpuDxe.inf
+!if $(BDS_TYPE) == CorebootPayloadPkg
   IntelFrameworkModulePkg/Universal/BdsDxe/BdsDxe.inf
+!else
+  MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
+!endif
   PcAtChipsetPkg/8254TimerDxe/8254Timer.inf
   MdeModulePkg/Universal/Metronome/Metronome.inf
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
