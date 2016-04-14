@@ -244,6 +244,7 @@ GetErrorReason (
   @return EFI_SUCCESS
 **/
 EFI_STATUS
+EFIAPI
 SetHighSpeedMode (
   IN  EFI_SD_HOST_IO_PROTOCOL    *This,
   IN  BOOLEAN                    Enable
