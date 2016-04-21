@@ -255,7 +255,6 @@ ApicTableUpdate (
   UINT8                      CurrProcessor;
   UINTN                      NumberOfCPUs;
   UINTN                      NumberOfEnabledCPUs;
-  UINTN                      BufferSize;
   EFI_PROCESSOR_INFORMATION  MpContext;
   ACPI_APIC_STRUCTURE_PTR    *ApicPtr;
 
@@ -298,7 +297,6 @@ ApicTableUpdate (
     switch (ApicPtr->AcpiApicCommon.Type) {
 
       case EFI_ACPI_1_0_PROCESSOR_LOCAL_APIC:
-        BufferSize = sizeof (EFI_PROCESSOR_INFORMATION);
         ApicPtr->AcpiLocalApic.Flags = 0;
         ApicPtr->AcpiLocalApic.ApicId = 0;
         Status = MpService->GetProcessorInfo (
@@ -562,7 +560,6 @@ AcpiPlatformEntryPoint (
   UINT32                        FvStatus;
   UINTN                         Size;
   EFI_ACPI_TABLE_VERSION        Version;
-  QNC_DEVICE_ENABLES            QNCDeviceEnables;
   EFI_HANDLE                    Handle;
   UINTN                         Index;
   PCI_DEVICE_INFO               *PciDeviceInfo;
@@ -577,7 +574,6 @@ AcpiPlatformEntryPoint (
   TableHandle = 0;
   CurrentTable = NULL;
   mConfigData  = NULL;
-  QNCDeviceEnables.Uint32 = PcdGet32 (PcdDeviceEnables);
 
   //
   // Initialize the EFI Driver Library

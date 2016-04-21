@@ -38,9 +38,6 @@ MISC_SMBIOS_TABLE_FUNCTION(MiscOemString)
   STRING_REF               TokenToGet;
   EFI_SMBIOS_HANDLE        SmbiosHandle;
   SMBIOS_TABLE_TYPE11      *SmbiosRecord;
-  EFI_MISC_OEM_STRING      *ForType11InputData;
-
-  ForType11InputData = (EFI_MISC_OEM_STRING *)RecordData;
 
   //
   // First check for invalid parameters.

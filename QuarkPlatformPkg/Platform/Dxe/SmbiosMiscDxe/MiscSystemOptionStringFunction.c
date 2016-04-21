@@ -40,9 +40,6 @@ MISC_SMBIOS_TABLE_FUNCTION(SystemOptionString)
   STRING_REF                        TokenToGet;
   EFI_SMBIOS_HANDLE                 SmbiosHandle;
   SMBIOS_TABLE_TYPE12               *SmbiosRecord;
-  EFI_MISC_SYSTEM_OPTION_STRING     *ForType12InputData;
-
-  ForType12InputData = (EFI_MISC_SYSTEM_OPTION_STRING *)RecordData;
 
   //
   // First check for invalid parameters.

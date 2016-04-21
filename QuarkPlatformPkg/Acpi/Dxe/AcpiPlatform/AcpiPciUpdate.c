@@ -261,9 +261,7 @@ SdtGetNameStringSize (
 {
   UINTN                 SegCount;
   UINTN                 Length;
-  UINT8                 *Name;
 
-  Name = Buffer;
   Length = 0;
 
   //
